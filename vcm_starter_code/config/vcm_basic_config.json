@@ -1,0 +1,10 @@
+{"mtree_type": "mes_simulation_description",
+    "name":"VCM",
+    "id": "1",
+    "environment": "VCMEnvironment",
+    "institution": "VCMInstitution",
+    "number_of_runs": 1,
+    "agents": [{"agent_name": "VCMAgent", "number": 5}]
+  }
+ 
+ 
