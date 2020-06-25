@@ -15,6 +15,8 @@ class BasicEnvironment(Environment):
     @directive_decorator("start_environment") # TODO schema
     def start_environment(self, message:Message):
         logging.log(EXPERIMENT, "Environment start...")
+        logging.log(EXPERIMENT, {"test":"test"})
+        self.log_experiment_data({"test":"test"})
         self.provide_endowment()
         self.start_auction()
 

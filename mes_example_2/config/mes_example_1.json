@@ -6,7 +6,7 @@
     "number_of_runs": 1,
     "agents": [{"agent_name": "BasicAgent", "number": 5}],
     "properties": {
-        "agent_endowment": 10,
+        "agent_endowment": 15,
         "num_auctions": 10
      }
   }

@@ -61,6 +61,8 @@ class BasicInstitution(Institution):
         bids = sorted(self.bids, key=lambda elem: elem[0] ,reverse=True)
 
         winner = bids.pop(0)
+        self.log_experiment_data({"item": self.item_for_auction, "bids": bids})
+        
         logging.log(EXPERIMENT, "Institution auction Winner: %s -> %s -> all bids -> %s", str(winner), self.item_for_auction, bids)
         new_message = Message()  # declare message
         new_message.set_sender(self)  # set the sender of message to this actor
