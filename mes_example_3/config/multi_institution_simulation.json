@@ -1,0 +1,22 @@
+{"mtree_type": "mes_simulation_description",
+    "name":"Basic Simulation Run",
+    "id": "1",
+    "environment": "BasicEnvironment",
+    "institutions": [{"institution": "BasicInstitution"},{"institution": "BasicInstitution2"}] ,
+    "agents": [{"agent_name": "BasicAgent", "number": 5}],
+    "properties": {
+        "agent_endowment": 10,
+        "num_auctions": 10
+     }
+}
+{"mtree_type": "mes_simulation_description",
+    "name":"Basic Simulation Run",
+    "id": "2",
+    "environment": "BasicEnvironment",
+    "institutions": [{"institution": "BasicInstitution"},{"institution": "BasicInstitution2"}] ,
+    "agents": [{"agent_name": "BasicAgent", "number": 5}],
+    "properties": {
+        "agent_endowment": 25,
+        "num_auctions": 20
+     }
+  } 
