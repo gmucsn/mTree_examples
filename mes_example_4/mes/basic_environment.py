@@ -15,10 +15,16 @@ class BasicEnvironment(Environment):
     @directive_decorator("start_environment") # TODO schema
     def start_environment(self, message:Message):
         logging.log(EXPERIMENT, "Environment start...")
-        logging.log(EXPERIMENT, {"test":"test"})
-        self.log_experiment_data({"test":"test"})
+        
         self.provide_endowment()
         self.start_auction()
+        print("should start")
+
+    @directive_decorator("close_environment") # TODO schema
+    def close_environment(self, message:Message):
+        self.end_round()
+
+
 
     def start_auction(self):
         new_message = Message()  # declare message
@@ -29,9 +35,9 @@ class BasicEnvironment(Environment):
 
     def provide_endowment(self):
         endowment = self.mtree_properties["agent_endowment"]
-        for agent in self.agent_addresses:
+        for agent in self.agents:
             new_message = Message()  # declare message
             new_message.set_sender(self.myAddress)  # set the sender of message to this actor
             new_message.set_directive("set_endowment")  # Set the directive (refer to 3. Make Messages) - has to match reciever decorator
             new_message.set_payload({"endowment": endowment})
-            self.send(agent, new_message )  # receiver_of_message, message
+            self.send(agent[0], new_message )  # receiver_of_message, message

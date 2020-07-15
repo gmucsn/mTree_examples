@@ -1,0 +1,13 @@
+{"mtree_type": "mes_simulation_description",
+    "name":"Basic Simulation Run",
+    "id": "1",
+    "agent_memory":"True",
+    "environment": "BasicEnvironment",
+    "number_of_runs": 10,
+    "institution": "BasicInstitution",
+    "agents": [{"agent_name": "BasicAgent", "number": 5}],
+    "properties": {
+        "agent_endowment": 10,
+        "num_auctions": 1
+     }
+}

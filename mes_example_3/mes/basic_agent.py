@@ -23,10 +23,10 @@ class BasicAgent(Agent):
     def auction_result(self, message: Message):
         logging.log(EXPERIMENT, "Agent received item for bid %s", message.get_payload())
         new_message = Message()  # declare message
-        new_message.set_sender(self)  # set the sender of message to this actor
+        new_message.set_sender(self.myAddress)  # set the sender of message to this actor
         new_message.set_directive("register_collateral")
         new_message.set_payload({"bid": self.min_value})
-        self.send(self.collateral_institution.myAddress, new_message)  # receiver_of_message, message
+        self.send(self.collateral_institution, new_message)  # receiver_of_message, message
 
 
     @directive_decorator("register_for_collateral")
@@ -49,7 +49,7 @@ class BasicAgent(Agent):
         print("Making a bid... Total Endowment: ", self.endowment)
         self.mtree_properties
         new_message = Message()  # declare message
-        new_message.set_sender(self)  # set the sender of message to this actor
+        new_message.set_sender(self.myAddress)  # set the sender of message to this actor
         new_message.set_directive("bid_for_item")
         new_message.set_payload({"bid": self.min_value})
-        self.send(self.institution.myAddress, new_message)  # receiver_of_message, message
+        self.send(self.institution, new_message)  # receiver_of_message, message

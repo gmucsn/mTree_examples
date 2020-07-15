@@ -46,10 +46,10 @@ class BasicInstitution(Institution):
             self.item_for_auction = random.randint(self.min_item_value, self.max_item_value)
             for agent in self.agents:
                 new_message = Message()  # declare message
-                new_message.set_sender(self)  # set the sender of message to this actor
+                new_message.set_sender(self.myAddress)  # set the sender of message to this actor
                 new_message.set_directive("item_for_bidding")
                 new_message.set_payload({"min_value": self.min_item_value, "max_value": self.max_item_value})
-                self.send(agent[0], new_message)  # receiver_of_message, message
+                self.send(agent, new_message)  # receiver_of_message, message
 
     @directive_decorator("accept_bid")
     def accept_bid(self, message:Message):
@@ -65,21 +65,21 @@ class BasicInstitution(Institution):
         winner = bids.pop(0)
         logging.log(EXPERIMENT, "Institution auction Winner: %s -> %s -> all bids -> %s", str(winner), self.item_for_auction, bids)
         new_message = Message()  # declare message
-        new_message.set_sender(self)  # set the sender of message to this actor
+        new_message.set_sender(self.myAddress)  # set the sender of message to this actor
         new_message.set_directive("auction_result")
         new_message.set_payload({"status": "winner", "real_value": self.item_for_auction})
 
-        self.send(winner[1].myAddress, new_message)  # receiver_of_message, message
+        self.send(winner[1], new_message)  # receiver_of_message, message
 
         for agent in bids:
             new_message = Message()  # declare message
-            new_message.set_sender(self)  # set the sender of message to this actor
+            new_message.set_sender(self.myAddress)  # set the sender of message to this actor
             new_message.set_directive("auction_result")
             new_message.set_payload({"status": "loser"})
-            self.send(agent[1].myAddress, new_message)  # receiver_of_message, message
+            self.send(agent[1], new_message)  # receiver_of_message, message
 
         new_message = Message()  # declare message
-        new_message.set_sender(self)  # set the sender of message to this actor
+        new_message.set_sender(self.myAddress)  # set the sender of message to this actor
         new_message.set_directive("start_auction")
         new_message.set_payload({"agents": self.agents})
         self.send(self.myAddress, new_message)  # receiver_of_message, message

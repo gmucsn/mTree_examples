@@ -36,9 +36,9 @@ class BasicInstitution2(Institution):
         self.agents = message.get_payload()["agents"]
         for agent in self.agents:
                 new_message = Message()  # declare message
-                new_message.set_sender(self)  # set the sender of message to this actor
+                new_message.set_sender(self.myAddress)  # set the sender of message to this actor
                 new_message.set_directive("register_for_collateral")
-                self.send(agent[0], new_message)  # receiver_of_message, message
+                self.send(agent, new_message)  # receiver_of_message, message
 
 
     @directive_decorator("start_experiment")

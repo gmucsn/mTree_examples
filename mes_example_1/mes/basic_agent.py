@@ -38,7 +38,7 @@ class BasicAgent(Agent):
 
     def make_bid(self):
         new_message = Message()  # declare message
-        new_message.set_sender(self)  # set the sender of message to this actor
+        new_message.set_sender(self.myAddress)  # set the sender of message to this actor
         new_message.set_directive("bid_for_item")
         new_message.set_payload({"bid": self.min_value})
-        self.send(self.institution.myAddress, new_message)  # receiver_of_message, message
+        self.send(self.institution, new_message)  # receiver_of_message, message

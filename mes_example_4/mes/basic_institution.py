@@ -35,6 +35,8 @@ class BasicInstitution(Institution):
 
     @directive_decorator("start_auction")
     def start_auction(self, message:Message):
+        print("stuff happening")
+        print(self.mtree_properties)
         if self.mtree_properties["num_auctions"] > 0:
             self.mtree_properties["num_auctions"] = self.mtree_properties["num_auctions"] - 1
             print("INSTITUTION: Starting Auction")
@@ -48,6 +50,12 @@ class BasicInstitution(Institution):
                 new_message.set_directive("item_for_bidding")
                 new_message.set_payload({"min_value": self.min_item_value, "max_value": self.max_item_value})
                 self.send(agent, new_message)  # receiver_of_message, message
+        else:
+            print("AUCTIONS COMPLETED")
+            new_message = Message()  # declare message
+            new_message.set_sender(self.myAddress)  # set the sender of message to this actor
+            new_message.set_directive("close_environment")
+            self.send(self.environment, new_message)  # receiver_of_message, message
 
     @directive_decorator("accept_bid")
     def accept_bid(self, message:Message):
