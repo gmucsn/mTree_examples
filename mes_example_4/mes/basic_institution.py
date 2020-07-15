@@ -35,8 +35,6 @@ class BasicInstitution(Institution):
 
     @directive_decorator("start_auction")
     def start_auction(self, message:Message):
-        print("stuff happening")
-        print(self.mtree_properties)
         if self.mtree_properties["num_auctions"] > 0:
             self.mtree_properties["num_auctions"] = self.mtree_properties["num_auctions"] - 1
             print("INSTITUTION: Starting Auction")
@@ -70,8 +68,7 @@ class BasicInstitution(Institution):
 
         winner = bids.pop(0)
         self.log_experiment_data({"item": self.item_for_auction, "bids": bids})
-        
-        logging.log(EXPERIMENT, "Institution auction Winner: %s -> %s -> all bids -> %s", str(winner), self.item_for_auction, bids)
+        logging.log(EXPERIMENT, "Institution Round: %s auction Winner: %s -> %s -> all bids -> %s", str(self.run_number), str(winner), self.item_for_auction, bids)
         new_message = Message()  # declare message
         new_message.set_sender(self.myAddress)  # set the sender of message to this actor
         new_message.set_directive("auction_result")
