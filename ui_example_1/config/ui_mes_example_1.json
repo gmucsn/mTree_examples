@@ -1,0 +1,14 @@
+{"mtree_type": "mes_subject_experiment",
+    "name":"Basic UI MES Example",
+    "id": "1",
+    "environment": "BasicEnvironment",
+    "institution": "BasicInstitution",
+    "number_of_runs": 1,
+    "agents": [{"agent_name": "BasicAgent", "number": 5}],
+    "properties": {
+        "agent_endowment": 10
+     },
+    "agent_ui": "bid_screen.html"
+  }
+ 
+ 
